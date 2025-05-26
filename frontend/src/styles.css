@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@theme {
+  --color-bg-gray: rgb(242, 242, 242);
+}

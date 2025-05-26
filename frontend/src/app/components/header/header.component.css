@@ -1,0 +1,22 @@
+/* header {
+  padding-inline: 10px;
+  padding-block: 10px;
+  background: gray;
+  color: white;
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  list-style-type: none;
+}
+li:hover {
+  cursor: pointer;
+  color: rgb(22, 22, 203);
+} */
+.active-link{
+  color: black;
+  font-weight: 500;
+}

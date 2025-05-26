@@ -1,0 +1,38 @@
+<header
+  class="p-4 w-full flex justify-between text-gray-500 sticky top-0 shadow"
+>
+  <h1
+    routerLink=""
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="flex cursor-pointer hover:text-black"
+  >
+    Code
+  </h1>
+  <ul class="flex gap-4">
+    <li
+      routerLink="/playground"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex cursor-pointer hover:text-black"
+    >
+      PlayGround
+    </li>
+    <li
+      routerLink="/all-code"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex cursor-pointer hover:text-black"
+    >
+      All Codes
+    </li>
+    <li
+      routerLink="/login"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex cursor-pointer hover:text-black"
+    >
+      Login
+    </li>
+  </ul>
+</header>

@@ -1,0 +1,35 @@
+/* .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.container{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.outputDiv {
+  border: solid;
+  width: 50%;
+  padding: 10px;
+  margin: 20px;
+  overflow: scroll;
+}
+.code{
+  width: 80%;
+  padding: 8px;
+}
+button{
+  padding-inline:10px ;
+  padding-block:5px ;
+  width: fit-content;
+}
+select{
+  width: fit-content;
+
+} */
