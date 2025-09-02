@@ -1,3 +1,33 @@
-<p>all-code works!</p>
+<div class="h-[90vh] overflow-y-scroll">
+  <div class="mb-2 b-b">
+    <select id="lan" [(ngModel)]="language"
+      class="hover:bg-gray-200 focus:outline-0 text-sm border-gray-300 border rounded">
+      @for (language of allLanguages; track $index) {
+      <option [value]="language">
+        {{ language | uppercase }}
+      </option>
+      }
+    </select>
+  </div>
+  <div *ngIf="message!=''">{{message}}</div>
+  <button class="bg-blue-500 rounded-full text-white py-1.5 px-4 cursor-pointer" [disabled]="loading"
+    (click)="handleSubmit()">
+    {{loading?"Loading...":"Submit"}}
+  </button>
+  <div class="h-4"></div>
+  <div class="w-4/5 -z-100">
+    <div class="h-[40vh] b-1">
+      <h1 class="text-center">StartCode</h1>
+      <ngx-monaco-editor [options]="{ language: language }" [(ngModel)]="startCode"></ngx-monaco-editor>
+    </div>
 
-<textarea (input)="handleTextarea($event)" name="" id="" class="w-1/2 focus:outline-0 focus:border-blue-400 m-4 p-1 border rounded"></textarea>
+    <div class="h-[40vh] b-1 mt-10">
+      <h1 class="text-center">ValidationCode</h1>
+      <ngx-monaco-editor [options]="{ language: language }" [(ngModel)]="validationCode"></ngx-monaco-editor>
+    </div>
+    <div class="h-[40vh] b-1 mt-10">
+      <h1 class="text-center">SolutionCode</h1>
+      <ngx-monaco-editor [options]="{ language: language }" [(ngModel)]="solutionCode"></ngx-monaco-editor>
+    </div>
+  </div>
+</div>

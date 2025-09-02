@@ -20,14 +20,34 @@ import { InputComponent } from '../../components/input/input.component';
   styleUrl: './playground.component.css',
 })
 export class PlaygroundComponent {
-  @ViewChild('inputRef') inputRef!: InputComponent;
+  // @ViewChild('inputRef') inputRef!: InputComponent;
   title = 'filename';
   showInput = false;
   code = '#write ur code here';
   language = 'python';
   theme = 'vs-light';
   input = '';
-  allLanguages = ['cpp', 'c', 'java', 'python', 'ruby', 'r'];
+  timeTaken: number | null = null;
+  allLanguages: string[] = [
+    'cpp',
+    'c',
+    'java',
+    'python',
+    'ruby',
+    'r',
+    'javascript',
+    'csharp',
+  ];
+  ids = {
+    cpp: 2,
+    c: 1,
+    java: 3,
+    python: 5,
+    ruby: 7,
+    r: 6,
+    javascript: 8,
+    csharp: 4,
+  };
   starterCodes = {
     cpp: `#include <iostream>
   using namespace std;
@@ -65,20 +85,26 @@ print("Hello, World!")`,
   loading = false;
   constructor(private readonly http: HttpClient) {}
   handleRun(input: string) {
+    this.timeTaken = null;
+    let start = new Date();
     this.loading = true;
     this.http
       .post<runSucResponse>(`${BACKEND_URL}/code/run`, {
-        language: this.language,
+        // @ts-ignore
+        languageId: this.ids[this.language],
         code: this.code,
         input: input,
+        probelmId: 0,
       })
       .subscribe({
         next: (res) => {
+          this.timeTaken = new Date().getTime() - start.getTime();
           this.response = res;
           this.loading = false;
           this.error = null;
         },
         error: (err: runFailResponse) => {
+          this.timeTaken = new Date().getTime() - start.getTime();
           this.response = null;
           this.loading = false;
           this.error = err;

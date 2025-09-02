@@ -2,33 +2,26 @@
   <div class="flex flex-col gap-2 pt-2 w-3/5">
     <div class="flex justify-between mx-4 flex-wrap">
       <div>
-        <button
-          class="px-4 py-1.5 rounded-full bg-green-500 cursor-pointer hover:scale-110 text-white"
-          (click)="handleRun(inputRef.input)"
-        >
+        <button class="px-4 py-1.5 rounded-full bg-green-500 cursor-pointer hover:scale-110 text-white"
+          (click)="handleRun(inputRef.input)">
           Run Code
         </button>
-        <input class="py-1.5 px-2 w-fit text-gray-500 focus:outline-2 rounded focus:shadow-blue-500" [(ngModel)]="title"/>
+        <input
+          class="py-1.5 ml-3 px-2 w-fit text-gray-500 outline-1 outline-gray-200 focus:outline-2 rounded focus:outline-blue-500 focus:shadow-blue-500"
+          [(ngModel)]="title" />
       </div>
 
       <div class="flex gap-4">
-        <select
-          id="lan"
-          (ngModelChange)="onLanChange($event)"
-          [(ngModel)]="language"
-          class="hover:bg-gray-200 focus:outline-0 text-sm border-gray-300 border rounded"
-        >
+        <select id="lan" (ngModelChange)="onLanChange($event)" [(ngModel)]="language"
+          class="hover:bg-gray-200 focus:outline-0 text-sm border-gray-300 border rounded">
           @for (language of allLanguages; track $index) {
           <option [value]="language">
             {{ language | uppercase }}
           </option>
           }
         </select>
-        <select
-          id="theme"
-          [(ngModel)]="theme"
-          class="hover:bg-gray-200 focus:outline-0 text-sm border-gray-300 border rounded"
-        >
+        <select id="theme" [(ngModel)]="theme"
+          class="hover:bg-gray-200 focus:outline-0 text-sm border-gray-300 border rounded">
           <option value="vs-light">VS-LIGHT</option>
           <option value="vs-dark">VS-DARK</option>
         </select>
@@ -41,19 +34,17 @@
         Save Code
       </button> -->
     </div>
-    <ngx-monaco-editor
-      [options]="{ language: language, theme: theme }"
-      [(ngModel)]="code"
-      style="height: 100%;"
-    ></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="{ language: language, theme: theme }" [(ngModel)]="code"
+      style="height: 100%;"></ngx-monaco-editor>
   </div>
-  <div
-    class="border-l-gray-200 border-l w-2/5 h-[93vh] relative bg-bg-gray flex flex-col"
-  >
+  <div class="border-l-gray-200 border-l w-2/5 h-[93vh] relative bg-bg-gray flex flex-col">
     <div class="flex justify-between sticky top-0 shadow w-full p-3 z-10">
       <h1 class="">Output:</h1>
       @if (loading) {
       <span>Loading...</span>
+      }
+      @else if(timeTaken){
+      <span>{{timeTaken}} ms</span>
       }
     </div>
     <div class="p-2 overflow-y-scroll h-full">
@@ -67,16 +58,11 @@
     @else if(response) {
     {{ response.stdout }}
   }
-  </pre
-      >
+  </pre>
     </div>
     <div class="sticky bottom-0 left-0 w-full z-10">
       <div class="border-b-gray-200 border-b w-full">
-        <span
-          (click)="handleShowInput()"
-          class="bg-white cursor-pointer pr-1 pt-1"
-          >stdin+</span
-        >
+        <span (click)="handleShowInput()" class="bg-white cursor-pointer pr-1 pt-1">stdin+</span>
       </div>
       <div [ngClass]="showInput ? 'block bg-white' : 'hidden bg-white'">
         <app-input #inputRef />
